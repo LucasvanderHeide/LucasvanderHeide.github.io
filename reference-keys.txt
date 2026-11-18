@@ -11,7 +11,7 @@ my-future-in-life-sciences
 my-desired-working-environment
 my-current-skills
 areas-for-development
-free-choice-assignment-labcase-assistant
+free-choice-assignment-labprepmapper
 choosing-a-new-data-science-for-biology-skill
 planning-and-approach
 distribution-of-available-time
