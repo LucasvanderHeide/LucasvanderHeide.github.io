@@ -222,11 +222,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As a Life Sciences student training to become a biomedical laboratory scientist, I am interested in both molecular biology and data science. I would like to explore how these two fields can work together, as I find this combination particularly interesting. I hope to broaden my knowledge and become more versatile in this field.</p>
 <p>During Data Science for Biology 1 and 2, I have learned to program in R and Bash. However, I have always wanted to learn Python as well. With this assignment, I would like to expand my programming skills. Python interests me not only because of its applications in Life Sciences, but also because it is widely used across programming and data science.</p>
 <p>In addition, I would like to explore the development of agentic AI applications. I see a lot of potential in artificial intelligence, especially considering how quickly its use has become commonplace in society. An AI agent can do more than simply answer questions: it can also use available tools to carry out specific tasks. I would like to investigate how this could be applied in a laboratory setting.</p>
-<p>My idea is to develop my own prototype, called <strong>LabPrepMapper</strong>. This will be a locally run AI assistant that helps users check and organise the information in their laboratory preparation protocols. Before starting laboratory work, students prepare a protocol containing relevant information about the experiment and the substances they will use. I would like to develop an assistant that scans these documents for a selection of predefined safety-related criteria.</p>
-<p>For example, the assistant could check whether chemicals are identified, whether H-statements and P-statements are mentioned, and whether information about personal protective equipment, first aid and waste disposal is included. If certain information is not detected, the assistant can flag this as a point for the user to review. The aim is to make it easier to check whether important preparation topics have been addressed.</p>
-<p>I plan to run an existing language model locally using Ollama and connect it to custom Python functions through LangChain. The user will provide a laboratory preparation protocol as a PDF document, for example, exported from LabArchives. Python functions will be used to scan the document for specific criteria, while the language model can help organise the findings into a structured overview.</p>
+<p>My idea is to develop my own prototype, called <strong>LabPrepMapper</strong>. This will be a locally run AI assistant that helps users prepare laboratory protocols by retrieving and organising relevant safety information about the chemicals and procedures involved.</p>
+<p>The user will provide a laboratory protocol as a PDF document, for example, exported from LabArchives. The assistant will identify the chemicals used and examine the different steps described in the protocol. Based on this information, it will look up relevant safety information in a predefined selection of reliable Safety Data Sheet (SDS) sources. This may include H-statements and P-statements, as well as relevant information about handling, personal protective equipment, first aid and waste disposal. By considering both the chemicals and the described procedures, the assistant can highlight potentially relevant safety measures that should be addressed in the protocol.</p>
+<p>I plan to run an existing language model locally using Ollama and connect it to custom Python functions through LangChain. The Python functions will handle tasks such as extracting information from the PDF and retrieving relevant SDS information. The language model will help interpret and organise the results into a structured overview.</p>
 <p>Considering my future plans, I believe this is a suitable choice. I want to develop into a biomedical laboratory scientist with both theoretical and practical knowledge of molecular biology, as well as the ability to analyse biological data. I believe that knowledge of Python and AI applications could be valuable in this field, building on the experience I already have with R and Bash.</p>
-<p>The exact criteria and functions of the assistant will be determined in consultation with my teacher. The scope and technical possibilities of the project will also be discussed before development begins.</p>
+<p>The exact chemicals, sources and functions of the assistant will be determined in consultation with my teacher. The scope and technical possibilities of the project will also be discussed before development begins.</p>
 </div>
 <div id="planning-and-approach" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Planning and Approach<a href="free-choice-assignment-labprepmapper.html#planning-and-approach" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -234,6 +234,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="distribution-of-available-time" class="section level3 hasAnchor" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Distribution of Available Time<a href="free-choice-assignment-labprepmapper.html#distribution-of-available-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table>
+<colgroup>
+<col width="42%" />
+<col width="57%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th>Activity</th>
@@ -254,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td align="right">3 hours</td>
 </tr>
 <tr class="even">
-<td>Selecting and defining the protocol criteria</td>
+<td>Selecting chemicals, protocol examples and reliable information sources</td>
 <td align="right">2 hours</td>
 </tr>
 <tr class="odd">
@@ -304,7 +308,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td>23–29 November 2026</td>
-<td>Further practising Python and defining the protocol criteria</td>
+<td>Further practising Python and selecting protocol examples and reliable sources</td>
 <td align="right">5 hours</td>
 </tr>
 <tr class="odd">
@@ -314,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td>7–13 December 2026</td>
-<td>Developing custom Python functions and carrying out an initial test</td>
+<td>Developing custom Python functions for extracting protocol information and retrieving SDS data</td>
 <td align="right">6 hours</td>
 </tr>
 <tr class="odd">
@@ -345,18 +349,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Python and a suitable development environment.</li>
 <li>Ollama with a local language model that supports tool calling.</li>
 <li>The LangChain Python library and its Ollama integration.</li>
-<li>Laboratory preparation protocols in PDF format, preferably fictional or approved by my teacher.</li>
+<li>Laboratory protocols in PDF format, preferably fictional or approved by my teacher.</li>
+<li>A predefined selection of reliable sources containing safety information about chemicals.</li>
 </ul>
 </div>
 <div id="development-and-final-product" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Development and Final Product<a href="free-choice-assignment-labprepmapper.html#development-and-final-product" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The final product will be a self-developed Python program called <strong>LabPrepMapper</strong>.</p>
-<p>It will use an existing language model running locally through Ollama. With LangChain, I will connect the model to custom Python functions, allowing the assistant to carry out specific tasks when processing a laboratory preparation protocol.</p>
-<p>The user will provide a PDF document containing their laboratory preparation. The assistant will scan this document for a predefined selection of criteria. These may include the identification of chemicals, H-statements and P-statements, personal protective equipment, first aid information and waste disposal.</p>
-<p>The exact functions will depend on the criteria selected in consultation with my teacher. The aim is to identify whether these topics are mentioned in the document and present the findings in a structured overview. If certain information cannot be detected, the assistant will flag it for the user to review. This does not automatically mean that the information is incorrect or that the protocol is incomplete.</p>
-<p>To keep the scope manageable, I will focus on a limited number of criteria and a small selection of PDF documents. The prototype will initially focus on text-based PDFs rather than scanned documents.</p>
+<p>It will use an existing language model running locally through Ollama. With LangChain, I will connect the model to custom Python functions, allowing the assistant to carry out specific tasks when analysing a laboratory protocol and retrieving relevant safety information.</p>
+<p>The user will provide a laboratory protocol as a PDF document. The assistant will extract the chemicals used and identify the different steps of the procedure. Where necessary, the user can check or supplement the identified chemicals. Based on this information, the assistant will look up relevant information in a predefined selection of reliable Safety Data Sheet (SDS) sources.</p>
+<p>The aim is to connect the information from the protocol to relevant safety information from the SDS documents. This may include H-statements and P-statements, as well as precautions concerning handling, personal protective equipment, first aid and waste disposal. By considering the chemicals and the activities described in the protocol, the assistant will generate a structured overview of potentially relevant safety measures and points that should be considered when preparing the protocol.</p>
+<p>The exact functions will depend on the selected protocols and sources. To keep the scope manageable, I will focus on a limited number of protocol examples, chemicals and reliable sources. The prototype will initially work with text-based PDF documents rather than scanned documents.</p>
 <p>To demonstrate the skills I have learned, I will document the Python code, the functionality of the agent and the results of several test protocols. I will also evaluate its reliability and limitations, and identify possible improvements for further development.</p>
-<p>The assistant is intended as a supporting tool for checking laboratory preparation protocols. It does not assess the scientific correctness of the information or replace the original safety documentation, laboratory procedures or supervision by a qualified person. The user remains responsible for checking and evaluating the information.</p>
+<p>The assistant is intended as a supporting tool for preparing laboratory protocols. The retrieved information and suggested safety measures must always be checked against the original SDS documents and local laboratory procedures. The assistant does not replace the user’s responsibility or supervision by a qualified person.</p>
 <p>ChatGPT was used to help structure the initial project proposal and time allocation. The project idea was developed by me in discussion with my teacher. The proposal was reviewed and adapted by me.</p>
 
 </div>
