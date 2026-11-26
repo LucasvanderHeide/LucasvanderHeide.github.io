@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 TexBox: A toolbox for text utilities in R | Portfolio</title>
+  <meta name="description" content="7 TexBox: A toolbox for text utilities in R | Portfolio" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 TexBox: A toolbox for text utilities in R | Portfolio" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 TexBox: A toolbox for text utilities in R | Portfolio" />
+  
+  
+  
+
+<meta name="author" content="Lucas van der Heide" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="reproducible-science.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="chapter" data-level="2" data-path="curriculum-vitae.html"><a href="curriculum-vitae.html"><i class="fa fa-check"></i><b>2</b> Curriculum Vitae</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="curriculum-vitae.html"><a href="curriculum-vitae.html#profile"><i class="fa fa-check"></i><b>2.1</b> Profile</a></li>
+<li class="chapter" data-level="2.2" data-path="curriculum-vitae.html"><a href="curriculum-vitae.html#education"><i class="fa fa-check"></i><b>2.2</b> Education</a></li>
+<li class="chapter" data-level="2.3" data-path="curriculum-vitae.html"><a href="curriculum-vitae.html#data-science-for-biology"><i class="fa fa-check"></i><b>2.3</b> Data Science for Biology</a></li>
+<li class="chapter" data-level="2.4" data-path="curriculum-vitae.html"><a href="curriculum-vitae.html#laboratory-skills"><i class="fa fa-check"></i><b>2.4</b> Laboratory Skills</a></li>
+<li class="chapter" data-level="2.5" data-path="curriculum-vitae.html"><a href="curriculum-vitae.html#projects"><i class="fa fa-check"></i><b>2.5</b> Projects</a></li>
+<li class="chapter" data-level="2.6" data-path="curriculum-vitae.html"><a href="curriculum-vitae.html#work-experience"><i class="fa fa-check"></i><b>2.6</b> Work Experience</a></li>
+<li class="chapter" data-level="2.7" data-path="curriculum-vitae.html"><a href="curriculum-vitae.html#key-competencies"><i class="fa fa-check"></i><b>2.7</b> Key Competencies</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="my-future-in-life-sciences.html"><a href="my-future-in-life-sciences.html"><i class="fa fa-check"></i><b>3</b> My Future in Life Sciences</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="my-future-in-life-sciences.html"><a href="my-future-in-life-sciences.html#my-desired-working-environment"><i class="fa fa-check"></i><b>3.1</b> My Desired Working Environment</a></li>
+<li class="chapter" data-level="3.2" data-path="my-future-in-life-sciences.html"><a href="my-future-in-life-sciences.html#my-current-skills"><i class="fa fa-check"></i><b>3.2</b> My Current Skills</a></li>
+<li class="chapter" data-level="3.3" data-path="my-future-in-life-sciences.html"><a href="my-future-in-life-sciences.html#areas-for-development"><i class="fa fa-check"></i><b>3.3</b> Areas for Development</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="free-choice-assignment-labprepmapper.html"><a href="free-choice-assignment-labprepmapper.html"><i class="fa fa-check"></i><b>4</b> Free-choice Assignment: LabPrepMapper</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="free-choice-assignment-labprepmapper.html"><a href="free-choice-assignment-labprepmapper.html#choosing-a-new-data-science-for-biology-skill"><i class="fa fa-check"></i><b>4.1</b> Choosing a New Data Science for Biology Skill</a></li>
+<li class="chapter" data-level="4.2" data-path="free-choice-assignment-labprepmapper.html"><a href="free-choice-assignment-labprepmapper.html#planning-and-approach"><i class="fa fa-check"></i><b>4.2</b> Planning and Approach</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="free-choice-assignment-labprepmapper.html"><a href="free-choice-assignment-labprepmapper.html#distribution-of-available-time"><i class="fa fa-check"></i><b>4.2.1</b> Distribution of Available Time</a></li>
+<li class="chapter" data-level="4.2.2" data-path="free-choice-assignment-labprepmapper.html"><a href="free-choice-assignment-labprepmapper.html#implementation-schedule"><i class="fa fa-check"></i><b>4.2.2</b> Implementation Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="free-choice-assignment-labprepmapper.html"><a href="free-choice-assignment-labprepmapper.html#requirements"><i class="fa fa-check"></i><b>4.3</b> Requirements</a></li>
+<li class="chapter" data-level="4.4" data-path="free-choice-assignment-labprepmapper.html"><a href="free-choice-assignment-labprepmapper.html#development-and-final-product"><i class="fa fa-check"></i><b>4.4</b> Development and Final Product</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-management.html"><a href="data-management.html"><i class="fa fa-check"></i><b>5</b> Data Management</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-management.html"><a href="data-management.html#daur2-rna-seq-assignment"><i class="fa fa-check"></i><b>5.1</b> DAUR2 RNA-seq assignment</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-management.html"><a href="data-management.html#folder-structure"><i class="fa fa-check"></i><b>5.1.1</b> Folder structure</a></li>
+<li class="chapter" data-level="5.1.2" data-path="data-management.html"><a href="data-management.html#readme"><i class="fa fa-check"></i><b>5.1.2</b> README</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-management.html"><a href="data-management.html#portfolio"><i class="fa fa-check"></i><b>5.2</b> Portfolio</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-management.html"><a href="data-management.html#folder-structure-1"><i class="fa fa-check"></i><b>5.2.1</b> Folder structure</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-management.html"><a href="data-management.html#readme-1"><i class="fa fa-check"></i><b>5.2.2</b> README</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="reproducible-science.html"><a href="reproducible-science.html"><i class="fa fa-check"></i><b>6</b> Reproducible Science</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="reproducible-science.html"><a href="reproducible-science.html#c.-elegans-data-analysis"><i class="fa fa-check"></i><b>6.1</b> C. elegans data analysis</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="reproducible-science.html"><a href="reproducible-science.html#data-preparation"><i class="fa fa-check"></i><b>6.1.1</b> Data preparation</a></li>
+<li class="chapter" data-level="6.1.2" data-path="reproducible-science.html"><a href="reproducible-science.html#raw-data-visualization"><i class="fa fa-check"></i><b>6.1.2</b> Raw data visualization</a></li>
+<li class="chapter" data-level="6.1.3" data-path="reproducible-science.html"><a href="reproducible-science.html#normalization"><i class="fa fa-check"></i><b>6.1.3</b> Normalization</a></li>
+<li class="chapter" data-level="6.1.4" data-path="reproducible-science.html"><a href="reproducible-science.html#results-and-interpretation"><i class="fa fa-check"></i><b>6.1.4</b> Results and interpretation</a></li>
+<li class="chapter" data-level="6.1.5" data-path="reproducible-science.html"><a href="reproducible-science.html#future-research"><i class="fa fa-check"></i><b>6.1.5</b> Future research</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="reproducible-science.html"><a href="reproducible-science.html#deep-dive-into-an-article"><i class="fa fa-check"></i><b>6.2</b> Deep dive into an article</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="reproducible-science.html"><a href="reproducible-science.html#research-question-and-summary"><i class="fa fa-check"></i><b>6.2.1</b> Research question and summary</a></li>
+<li class="chapter" data-level="6.2.2" data-path="reproducible-science.html"><a href="reproducible-science.html#reproducibility-assessment"><i class="fa fa-check"></i><b>6.2.2</b> Reproducibility assessment</a></li>
+<li class="chapter" data-level="6.2.3" data-path="reproducible-science.html"><a href="reproducible-science.html#reviewing-the-r-code"><i class="fa fa-check"></i><b>6.2.3</b> Reviewing the R code</a></li>
+<li class="chapter" data-level="6.2.4" data-path="reproducible-science.html"><a href="reproducible-science.html#reproducing-figure-3"><i class="fa fa-check"></i><b>6.2.4</b> Reproducing Figure 3</a></li>
+<li class="chapter" data-level="6.2.5" data-path="reproducible-science.html"><a href="reproducible-science.html#use-of-ai"><i class="fa fa-check"></i><b>6.2.5</b> Use of AI</a></li>
+<li class="chapter" data-level="6.2.6" data-path="reproducible-science.html"><a href="reproducible-science.html#references"><i class="fa fa-check"></i><b>6.2.6</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html"><i class="fa fa-check"></i><b>7</b> TexBox: A toolbox for text utilities in R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#why-texbox"><i class="fa fa-check"></i><b>7.1</b> Why TexBox?</a></li>
+<li class="chapter" data-level="7.2" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#whats-inside-the-toolbox"><i class="fa fa-check"></i><b>7.2</b> What’s inside the toolbox?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#word_count"><i class="fa fa-check"></i><b>7.2.1</b> 1. <code>word_count()</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#sentence_count"><i class="fa fa-check"></i><b>7.2.2</b> 2. <code>sentence_count()</code></a></li>
+<li class="chapter" data-level="7.2.3" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#clean_text"><i class="fa fa-check"></i><b>7.2.3</b> 3. <code>clean_text()</code></a></li>
+<li class="chapter" data-level="7.2.4" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#text_summary"><i class="fa fa-check"></i><b>7.2.4</b> 4. <code>text_summary()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#developing-an-r-package"><i class="fa fa-check"></i><b>7.3</b> Developing an R package</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#package-structure"><i class="fa fa-check"></i><b>7.3.1</b> Package structure</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#documenting-the-functions-with-roxygen2"><i class="fa fa-check"></i><b>7.4</b> Documenting the functions with roxygen2</a></li>
+<li class="chapter" data-level="7.5" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#a-vignette-as-a-user-guide"><i class="fa fa-check"></i><b>7.5</b> A vignette as a user guide</a></li>
+<li class="chapter" data-level="7.6" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#testing-and-validation"><i class="fa fa-check"></i><b>7.6</b> Testing and validation</a></li>
+<li class="chapter" data-level="7.7" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#sharing-texbox-through-github"><i class="fa fa-check"></i><b>7.7</b> Sharing TexBox through GitHub</a></li>
+<li class="chapter" data-level="7.8" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#reflection-what-i-learned"><i class="fa fa-check"></i><b>7.8</b> Reflection: What I learned</a></li>
+<li class="chapter" data-level="7.9" data-path="texbox-a-toolbox-for-text-utilities-in-r.html"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#links-and-resources"><i class="fa fa-check"></i><b>7.9</b> Links and resources</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Portfolio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="texbox-a-toolbox-for-text-utilities-in-r" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> TexBox: A toolbox for text utilities in R<a href="texbox-a-toolbox-for-text-utilities-in-r.html#texbox-a-toolbox-for-text-utilities-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="why-texbox" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Why TexBox?<a href="texbox-a-toolbox-for-text-utilities-in-r.html#why-texbox" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I decided to create an R package called <strong>TexBox</strong>: a small toolbox with functions for working with text. While writing reports in R Markdown, I sometimes wanted a quick way to check how much I had written. For example, I wanted to know the number of words or sentences in a text. I also wanted an easy way to remove unnecessary spaces. TexBox brings these small tasks together in one package.</p>
+<p>I mainly had students in mind when I came up with the idea. Some assignments have a maximum word, sentence or character count, and it can be useful to check these before handing in a report. I hope TexBox can make those final checks a little easier, without having to use separate tools for every task.</p>
+</div>
+<div id="whats-inside-the-toolbox" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> What’s inside the toolbox?<a href="texbox-a-toolbox-for-text-utilities-in-r.html#whats-inside-the-toolbox" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TexBox currently contains four functions for working with text:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>word_count()</code></td>
+<td align="left">Counts the number of words in text</td>
+</tr>
+<tr class="even">
+<td align="left"><code>sentence_count()</code></td>
+<td align="left">Counts the number of sentences in text</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>clean_text()</code></td>
+<td align="left">Removes unnecessary whitespace</td>
+</tr>
+<tr class="even">
+<td align="left"><code>text_summary()</code></td>
+<td align="left">Combines several text statistics in one overview</td>
+</tr>
+</tbody>
+</table>
+<p>The functions can be used separately, depending on what the user needs. For a quick word count, one function is enough. When someone wants a more complete overview, <code>text_summary()</code> combines several statistics in one table.</p>
+<div id="word_count" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> 1. <code>word_count()</code><a href="texbox-a-toolbox-for-text-utilities-in-r.html#word_count" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>word_count()</code> function counts the number of words in a character vector. It treats whitespace as the separator between words, so it can also process multiple text elements at once.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb21-1" tabindex="-1"></a><span class="fu">word_count</span>(<span class="st">&quot;Hello world!&quot;</span>)</span></code></pre></div>
+<p>This returns a count of <strong>2 words</strong>.</p>
+<p>The function first checks whether the input is a character vector. It then processes each text element separately, removes unnecessary whitespace at the beginning and end, and splits the text at whitespace. Finally, <code>length()</code> is used to count the resulting words. An empty string returns zero, and missing values (<code>NA</code>) remain missing.</p>
+</div>
+<div id="sentence_count" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> 2. <code>sentence_count()</code><a href="texbox-a-toolbox-for-text-utilities-in-r.html#sentence_count" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>sentence_count()</code> function counts the number of sentences in a text. It uses periods, exclamation marks and question marks (<code>.</code>, <code>!</code> and <code>?</code>) as sentence separators.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb22-1" tabindex="-1"></a><span class="fu">sentence_count</span>(<span class="st">&quot;Hello! How are you? I am fine.&quot;</span>)</span></code></pre></div>
+<p>This returns a count of <strong>3 sentences</strong>.</p>
+<p>The function splits the text at these punctuation marks and counts the non-empty text parts. It can also process multiple text elements. One limitation is that this is a relatively simple way of detecting sentence boundaries. An abbreviation such as <code>Dr.</code> can also be interpreted as the end of a sentence. This is something I would like to improve in the future.</p>
+</div>
+<div id="clean_text" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> 3. <code>clean_text()</code><a href="texbox-a-toolbox-for-text-utilities-in-r.html#clean_text" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>clean_text()</code> function removes unnecessary whitespace. It replaces multiple spaces, tabs and line breaks with a single space, and removes whitespace at the beginning and end of the text.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb23-1" tabindex="-1"></a><span class="fu">clean_text</span>(<span class="st">&quot;  Hello    world!  &quot;</span>)</span></code></pre></div>
+<p>The result is:</p>
+<pre class="text"><code>[1] &quot;Hello world!&quot;</code></pre>
+<p>This function uses <code>gsub()</code> to find and replace repeated whitespace. After that, <code>trimws()</code> removes whitespace from the start and end. This can be useful when text has been copied from different sources or contains inconsistent spacing. It is worth keeping in mind that line breaks are also replaced by spaces, so the function is intended for cleaning text rather than preserving paragraph layout.</p>
+</div>
+<div id="text_summary" class="section level3 hasAnchor" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> 4. <code>text_summary()</code><a href="texbox-a-toolbox-for-text-utilities-in-r.html#text_summary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>text_summary()</code> function combines several text statistics in one data frame. It reports the original text, the number of characters, the number of words and the number of sentences.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb25-1" tabindex="-1"></a><span class="fu">text_summary</span>(<span class="st">&quot;Hello world!&quot;</span>)</span></code></pre></div>
+<p>The result looks like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">text</th>
+<th align="right">characters</th>
+<th align="right">words</th>
+<th align="right">sentences</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Hello world!</td>
+<td align="right">12</td>
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>The character count includes spaces and punctuation. This function brings the other functions together: it uses <code>word_count()</code> and <code>sentence_count()</code> and adds the character count with <code>nchar()</code>. This means users can get a quick overview of their text without having to run each function separately.</p>
+</div>
+</div>
+<div id="developing-an-r-package" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Developing an R package<a href="texbox-a-toolbox-for-text-utilities-in-r.html#developing-an-r-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I followed the package development steps from the HU Workflows Reader and the related example in <em>R Packages: The Whole Game</em>. The book uses a different example package, but I followed the same general workflow and applied it to my own idea, TexBox.</p>
+<p>I started by creating the package structure with <code>usethis::create_package()</code>. This created the basic files and folders that R expects in a package. I then used <code>usethis::use_r()</code> to create a separate R script for each function. For example, <code>usethis::use_r("word_count")</code> created <code>R/word_count.R</code>. Keeping every function in its own file makes the package easier to navigate and maintain.</p>
+<div id="package-structure" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Package structure<a href="texbox-a-toolbox-for-text-utilities-in-r.html#package-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The main files and folders in TexBox each have their own purpose:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">File or directory</th>
+<th align="left">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>R/</code></td>
+<td align="left">Contains the R scripts with the four functions</td>
+</tr>
+<tr class="even">
+<td align="left"><code>man/</code></td>
+<td align="left">Contains the help files generated from the function documentation</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>vignettes/</code></td>
+<td align="left">Contains the longer user guide for the package</td>
+</tr>
+<tr class="even">
+<td align="left"><code>DESCRIPTION</code></td>
+<td align="left">Contains package metadata, such as its name, title, version, author, description and license</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>NAMESPACE</code></td>
+<td align="left">Defines which functions are exported for users and manages the package namespace</td>
+</tr>
+<tr class="even">
+<td align="left"><code>LICENSE</code> and <code>LICENSE.md</code></td>
+<td align="left">Contain the information for the MIT License</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>.Rbuildignore</code></td>
+<td align="left">Lists files that should be left out of the built package</td>
+</tr>
+</tbody>
+</table>
+<p>The repository layout below shows how these files and folders are organised in the GitHub project.</p>
+<p><Br></p>
+<div class="float">
+<img src="images/texbox_maplayout.png" alt="Figure 5: TexBox repository layout" />
+<div class="figcaption"><strong>Figure 5:</strong> TexBox repository layout</div>
+</div>
+<p><Br></p>
+<p>I also chose the MIT License. This is a permissive open-source license that allows others to use, copy, modify and distribute the code, as long as the required copyright and license notices are kept.</p>
+<p>The <code>DESCRIPTION</code> file is important because it tells R and other users what the package is, who created it and what it is for. It also records package details such as the version and license, and can list other packages that are needed. The four TexBox functions use functions from base R, so they do not need an additional package to perform the text operations. The <code>NAMESPACE</code> file has a different role: it controls which functions are available to package users. For TexBox, I marked all four functions with <code>@export</code>, so users can call them after loading the package.</p>
+</div>
+</div>
+<div id="documenting-the-functions-with-roxygen2" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Documenting the functions with roxygen2<a href="texbox-a-toolbox-for-text-utilities-in-r.html#documenting-the-functions-with-roxygen2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I used <strong>roxygen2</strong> to document the four functions. Roxygen2 allows documentation to be written directly above a function as special comments that start with <code>#'</code>. This keeps the explanation close to the code it describes.</p>
+<p>For example, the documentation for <code>word_count()</code> includes a short description, an explanation of its input and output, an example and an export tag. A simplified part of the comments looks like this:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb26-1" tabindex="-1"></a><span class="co">#&#39; Count the number of words in text</span></span>
+<span id="cb26-2"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb26-2" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb26-3"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb26-3" tabindex="-1"></a><span class="co">#&#39; @param text A character vector containing text.</span></span>
+<span id="cb26-4"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb26-4" tabindex="-1"></a><span class="co">#&#39; @return The number of words in each text element.</span></span>
+<span id="cb26-5"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb26-5" tabindex="-1"></a><span class="co">#&#39; @examples</span></span>
+<span id="cb26-6"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb26-6" tabindex="-1"></a><span class="co">#&#39; word_count(&quot;Hello world!&quot;)</span></span>
+<span id="cb26-7"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb26-7" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb26-8"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb26-8" tabindex="-1"></a>word_count <span class="ot">&lt;-</span> <span class="cf">function</span>(text) {</span>
+<span id="cb26-9"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb26-9" tabindex="-1"></a>  <span class="co"># function code goes here</span></span>
+<span id="cb26-10"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb26-10" tabindex="-1"></a>}</span></code></pre></div>
+<p>The main tags I used were:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Tag</th>
+<th align="left">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>@param</code></td>
+<td align="left">Describes the function’s input arguments</td>
+</tr>
+<tr class="even">
+<td align="left"><code>@return</code></td>
+<td align="left">Describes what the function returns</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>@examples</code></td>
+<td align="left">Provides an example of how to use the function</td>
+</tr>
+<tr class="even">
+<td align="left"><code>@seealso</code></td>
+<td align="left">Links to related functions</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>@export</code></td>
+<td align="left">Marks the function as available to package users</td>
+</tr>
+</tbody>
+</table>
+<p>The comments start with <code>#'</code>, which makes them different from regular R comments that start with <code>#</code>. After writing or updating these comments, I ran:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb27-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">document</span>()</span></code></pre></div>
+<p>This processes the roxygen2 comments and automatically generates the <code>.Rd</code> help files in the <code>man/</code> folder. It also updates <code>NAMESPACE</code>, including the export information for the functions marked with <code>@export</code>. Users can then open the help page for a function in R, for example with <code>?word_count</code>.</p>
+</div>
+<div id="a-vignette-as-a-user-guide" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> A vignette as a user guide<a href="texbox-a-toolbox-for-text-utilities-in-r.html#a-vignette-as-a-user-guide" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Besides the help page for each individual function, I wanted TexBox to have one guide that explains the package as a whole. For this, I created a <strong>vignette</strong> with:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb28-1" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">&quot;texbox&quot;</span>)</span></code></pre></div>
+<p>This created the file <code>vignettes/texbox.Rmd</code>. I titled the guide <em>A Quickstart with TexBox</em>. It introduces the package, explains what each function does and includes examples of how to use them. The code examples in the vignette can be run by users, which makes it a practical starting point for someone who has just installed the package.</p>
+<p>After installing TexBox, the vignette can be opened from R with:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb29-1" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">&quot;texbox&quot;</span>, <span class="at">package =</span> <span class="st">&quot;TexBox&quot;</span>)</span></code></pre></div>
+<p>The vignette is different from the individual help pages: the help pages explain one function at a time, while the vignette gives users an introduction to the complete package.</p>
+</div>
+<div id="testing-and-validation" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Testing and validation<a href="texbox-a-toolbox-for-text-utilities-in-r.html#testing-and-validation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>While developing TexBox, I tested the functions individually with different types of input. For example, I checked how they handled multiple text elements, empty strings, extra whitespace and invalid input. I also checked whether the punctuation used by <code>sentence_count()</code> was recognised as expected.</p>
+<p>After making changes to a function, I used <code>devtools::load_all()</code> to load the current development version of the package into R. This meant I could test my changes without installing the package again after every adjustment. I used <code>devtools::document()</code> to update the generated documentation and <code>devtools::check()</code> to check the package as a whole.</p>
+<p>The first package checks did not go smoothly. I initially had a problem with Rtools: the version installed did not match the version required by my R installation, so R could not find the <code>make</code> tool needed to build packages. After installing the matching Rtools version and restarting RStudio, this problem was solved. I also received a note because the RStudio project file was included among the top-level package files. I added it to <code>.Rbuildignore</code>, so it would not be included in the package build.</p>
+<p>The final <code>devtools::check()</code> completed with:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Check</th>
+<th align="right">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Errors</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Warnings</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Notes</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>This was an important final check, because it showed that the package could be built and passed the package checks without errors, warnings or notes.</p>
+</div>
+<div id="sharing-texbox-through-github" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Sharing TexBox through GitHub<a href="texbox-a-toolbox-for-text-utilities-in-r.html#sharing-texbox-through-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Once the package was ready, I made it available through a public GitHub repository. This allows other people, including the course lecturers, to view the source code and install the package. I used Git to track the changes, commit the package files and push them to GitHub.</p>
+<p>There was a small extra step in this process. I had initially created the package in a separate folder from the Git repository I had already connected. As a result, the new package files were not being tracked by that repository. I moved the package files into the existing Git repository and then committed and pushed them. This taught me to pay attention to the project folder and the folder that Git is actually tracking.</p>
+<p>The package can be installed directly from GitHub with:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb30-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(</span>
+<span id="cb30-2"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb30-2" tabindex="-1"></a>  <span class="st">&quot;lucasvanderheide/TexBox&quot;</span>,</span>
+<span id="cb30-3"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb30-3" tabindex="-1"></a>  <span class="at">build_vignettes =</span> <span class="cn">TRUE</span></span>
+<span id="cb30-4"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb30-4" tabindex="-1"></a>)</span></code></pre></div>
+<p>After installation, users can load TexBox and use its functions:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb31-1" tabindex="-1"></a><span class="fu">library</span>(TexBox)</span>
+<span id="cb31-2"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb31-2" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb31-3" tabindex="-1"></a><span class="fu">word_count</span>(<span class="st">&quot;Hello from TexBox!&quot;</span>)</span>
+<span id="cb31-4"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb31-4" tabindex="-1"></a><span class="fu">sentence_count</span>(<span class="st">&quot;This is TexBox. It works!&quot;</span>)</span>
+<span id="cb31-5"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb31-5" tabindex="-1"></a><span class="fu">clean_text</span>(<span class="st">&quot;  Welcome    to TexBox!  &quot;</span>)</span>
+<span id="cb31-6"><a href="texbox-a-toolbox-for-text-utilities-in-r.html#cb31-6" tabindex="-1"></a><span class="fu">text_summary</span>(<span class="st">&quot;Hello world! Welcome to TexBox.&quot;</span>)</span></code></pre></div>
+<p>I tested the installation from GitHub successfully. I also checked that the installed vignette could be found using <code>vignette("texbox", package = "TexBox")</code>. This was important because it confirmed that TexBox was not only working in my own development project, but could also be installed and used as a package from GitHub.</p>
+<p><a href="https://github.com/lucasvanderheide/TexBox">View the TexBox GitHub repository</a></p>
+</div>
+<div id="reflection-what-i-learned" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Reflection: What I learned<a href="texbox-a-toolbox-for-text-utilities-in-r.html#reflection-what-i-learned" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>At the beginning, creating a complete R package felt like a big mountain to me. I found it difficult to know which tools and functions I needed for the final checks. Getting everything into GitHub was also more complicated than I expected, because I first had to leave the original project and later move the package files into the Git repository. The Rtools issue was another challenge, but solving it helped me understand that the tools used to build a package need to match the R version I am working with.</p>
+<p>The sentence counter also has a limitation that I have not solved yet: abbreviations with a period, such as <code>Dr.</code>, can be counted as sentence boundaries. This is something I would like to improve in a future version.</p>
+<p>The biggest thing I learned is that an R package is not as intimidating as it first seemed. At its core, it is a set of R functions organised in a clear structure, with documentation and checks that make it easier for other people to use. I also learned that writing the function is only one part of the process. I need to check whether it works, whether it does what I intended, and whether someone else can understand and use it. Documentation and a vignette help make that possible.</p>
+<p>I noticed that I can easily feel overwhelmed when I think about building a whole package at once. Breaking the work into smaller steps made it much more manageable. Next time, I would like to sketch out the structure and the steps before I start coding. Now that I have completed a package once, I have a better idea of what the process looks like and can work from that experience.</p>
+<p>I also enjoyed the process more than I expected, and I would like to keep developing TexBox. Possible additions could include changing the capitalization of text, counting selected special characters, or adding helpers that apply Markdown formatting such as headings, bold or italic text. I would also like to improve the sentence counter so that it can recognise abbreviations more accurately. For now, TexBox is a small package, but it gives me a good starting point for building and sharing more of my own R tools in the future.</p>
+</div>
+<div id="links-and-resources" class="section level2 hasAnchor" number="7.9">
+<h2><span class="header-section-number">7.9</span> Links and resources<a href="texbox-a-toolbox-for-text-utilities-in-r.html#links-and-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><a href="https://github.com/lucasvanderheide/TexBox">TexBox GitHub repository</a></li>
+<li><a href="https://lesmaterialen.rstudio.hu.nl/workflows-reader/rpackages.html">HU Workflows Reader – R packages</a></li>
+<li><a href="https://r-pkgs.org/whole-game.html">R Packages – The Whole Game</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="reproducible-science.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>
